@@ -40,7 +40,6 @@
 
  - belongs_to :user
  - has_one :purchase_management
- - has_one :address
  
 
  ## addresses テーブル

@@ -4,17 +4,22 @@
 
 |Column            |Type   |Options    |
 |------------------|-------|-----------|
-|name              |staring|null: false|
-|email             |staring|null: false|
+|first_name              |staring|null: false|
+|last_name              |staring|null: false|
+|first_name(フリガナ)      |staring|null: false|
+|last_name(フリガナ) |staring|null: false|
+
+|email             |staring|null: false, unique: true|
 |encrypted_password|staring|null: false|
 |nickname          |staring|null: false|
-|birthday          |integer|null: false|
+|birthday          |date|null: false|
 
 
 ### Association
 
- - has_many :sells
- - has_many :orders
+ - has_many :items
+ - has_many :Purchase managements
+ - has_one : address
  
 
 
@@ -23,41 +28,51 @@
 
 | Column   | Type      | Options     |
 | ---------| --------- | ----------- |
-| item_name| string    | null: false |
-| category | staring   | null: false |
-| brand    | staring   | null: false |
-| user     | reference | null: false, foreign_key: true |
-| price    | integer   | null: false|
+| user             | references | null: false, foreign_key: true  |
+| item_image       | text      | null: false |
+| item_name        | string    | null: false |
+
+| category_id      | integer  | null: false |
+| item_content_id     | integer  | null: false |
+| Product condition_id| integer   | null: false |
+| Burden of shipping charges_id   | integer    | null: false|
+| Delivery area_id        | integer | null: false |
+| Days to ship staring_id | integer| null: false |
+| price                | integer | null: false |
 
 ### Association
 
- - has_many :
- - has_one_attached :order
+ - belongs_to :user
+ - has_one :Purchase management
+ - has_one :address
  
 
- ## orders テーブル
+ ## address テーブル
 
 | Column   | Type      | Options     |
 | ---------| --------- | ----------- |
-| item     | reference | null: false, foreign_key: true |
-| user     |  string  | null: false |
-| price    | reference | null: false, foreign_key: true |
-| address  |  string    | null: false |
+| shipping address | string | null: false |
+| post_code        | integer| null: false |
+| prefectures      | string | null: false |
+| municipality     | string | null: false |
+| house_number     | string | null: false |
+| building_name    | string |
+| telephone number | integer| null: false |
 
 ### Association
 
   - belongs_to :user
+  - belongs_to :item
 
 
- ## sells テーブル
+
+ ## Purchase management テーブル
 
 | Column   | Type      | Options     |
 | ---------| --------- | ----------- |
-| user     | string    | null: false |
-| item_name| string    | null: false |
-| category | staring   | null: false |
-| brand    | staring   | null: false |
-| price    | integer   | null: false|
+| item    | references | null: false, foreign_key: true |
+| user    | references | null: false, foreign_key: true |
+
 
 ### Association
 

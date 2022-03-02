@@ -31,7 +31,7 @@
 
 | category_id      | integer  | null: false |
 | product_condition_id| integer   | null: false |
-| burden_of_shipping_charges_id   | integer    | null: false|
+| burden_of_shipping_charge_id   | integer    | null: false|
 | delivery_area_id        | integer | null: false |
 | days_to_ship_staring_id | integer| null: false |
 | price                | integer | null: false |
@@ -39,17 +39,17 @@
 ### Association
 
  - belongs_to :user
- - has_one :Purchase management
+ - has_one :purchase_management
  - has_one :address
  
 
- ## address テーブル
+ ## addresses テーブル
 
 | Column   | Type      | Options     |
 | ---------| --------- | ----------- |
-| shipping_address | string | null: false |
-| post_code        | integer| null: false |
-| delivery_area_id | references | null: false, foreign_key: true  |
+|purchase_management|references | null: false, foreign_key: true  |
+| post_code        | string | null: false |
+| delivery_area_id | integer| null: false |
 | municipality     | string | null: false |
 | house_number     | string | null: false |
 | building_name    | string |
@@ -57,7 +57,7 @@
 
 ### Association
 
-- has_one : Purchase management
+- belongs_to  : purchase_management
 
 
  ## Purchase managements テーブル

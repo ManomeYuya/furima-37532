@@ -4,6 +4,8 @@
     before do
       @user = FactoryBot.build(:user)
     end
+
+    describe 'ユーザー新規登録' do
         it 'nickname:必須' do
           @user.nickname = ''
           @user.valid?
@@ -39,7 +41,11 @@
           @user.valid?
           expect(@user.errors.full_messages).to include("Birthday can't be blank")
         end
-        it 'password:半角英数字混合での入力必須' do
+        
+        it 'password:半角数字のみでは登録できない' do
+          @user.password = "123456"
+          @user.valid?
+          expect(@user.errors.full_messages).to include("Password パスワードには英字と数字の両方を含めて設定してください")
           
         end
         
@@ -73,4 +79,4 @@
           
         end
   end
-  
+  end

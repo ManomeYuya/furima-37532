@@ -6,6 +6,12 @@
     end
 
     describe 'ユーザー新規登録' do
+      context '新規登録できるとき' do
+         it "すべての情報が入力されているとき" do
+          expect(@user).to be_valid
+         end
+      end
+      context '新規登録できないとき' do
         it 'nickname:必須' do
           @user.nickname = ''
           @user.valid?
@@ -54,6 +60,16 @@
           @user.valid?
           expect(@user.errors.full_messages).to include("Password パスワードには英字と数字の両方を含めて設定してください")
         end
+        it 'password:パスワードが6文字未満では登録できない' do
+          @user.password = "abcde"
+          @user.valid?
+          expect(@user.errors.full_messages).to include("Password パスワードには英字と数字の両方を含めて設定してください")
+        end
+        it 'password_confirmation:パスワードとパスワード（確認用）が不一致だと登録できない' do
+          @user.password_confirmation = ''
+          @user.valid?
+          expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+        end
         it 'first_name:全角での入力必須' do
           @user.first_name = "ああa"
           @user.valid?
@@ -79,4 +95,5 @@
           
         end
   end
-  end
+end
+end

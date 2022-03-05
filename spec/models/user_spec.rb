@@ -63,7 +63,7 @@
         it 'password:パスワードが6文字未満では登録できない' do
           @user.password = "abcde"
           @user.valid?
-          expect(@user.errors.full_messages).to include("Password パスワードには英字と数字の両方を含めて設定してください")
+          expect(@user.errors.full_messages).to include("Password パスワードが6文字未満では登録できない")
         end
         it 'password_confirmation:パスワードとパスワード（確認用）が不一致だと登録できない' do
           @user.password_confirmation = ''

@@ -42,17 +42,17 @@ RSpec.describe Item, type: :model do
       it 'price:半角数字以外では保存できない' do
         @item.price = '５５５５'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include("Price 価格は半角数値のみ使用してください")
       end
       it 'price:¥300以下の場合は保存できない' do
         @item.price = 200
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
+        expect(@item.errors.full_messages).to include("Price 価格は¥300~9,999,999の間で設定してください")
       end
       it 'price:¥9,999,999以上の場合は保存できない' do
         @item.price = 10,000,000
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include("Price 価格は¥300~9,999,999の間で設定してください")
       end
 
       it 'category_id:初期値を選んだ場合は保存できない' do

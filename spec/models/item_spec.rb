@@ -13,6 +13,11 @@ RSpec.describe Item, type: :model do
        end
       end
     context '出品ができないとき' do
+      it 'user:出品者が紐付いていなければ出品できない' do
+        @item.user_id = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User must exist")
+      end
       it 'item_name:必須' do
         @item.item_name = ''
         @item.valid?

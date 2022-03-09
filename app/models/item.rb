@@ -5,7 +5,6 @@ class Item < ApplicationRecord
   #has_one :purchase_management
   has_one_attached :image
   belongs_to :category
-  belongs_to :delivery_area
   belongs_to :product_condition
   belongs_to :burden_of_shipping_charge
   belongs_to :delivery_area

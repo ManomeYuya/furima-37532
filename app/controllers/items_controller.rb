@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:edit, :show, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :contributor_confirmation, only: [:edit, :destroy]
+  before_action :sold_out, only: [:edit]
 
   def index
     @items = Item.order("created_at DESC")
@@ -54,6 +55,10 @@ class ItemsController < ApplicationController
 
   def contributor_confirmation
     redirect_to root_path unless current_user.id == @item.user.id
+  end
+
+  def sold_out
+    redirect_to root_path if @item.purchase_management.present?
   end
 
 end

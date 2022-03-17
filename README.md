@@ -59,7 +59,7 @@
 - belongs_to  : purchase_management
 
 
- ## Purchase managements テーブル
+ ## purchase_managements テーブル
 
 | Column   | Type      | Options     |
 | ---------| --------- | ----------- |

@@ -47,12 +47,12 @@ require 'rails_helper'
   end
   
   it 'telephone_number:電話番号が9桁以下であると保存できない' do
-    @purchase_management_address.telephone_number = 000000000
+    @purchase_management_address.telephone_number = '000000000'
     @purchase_management_address.valid?
     expect(@purchase_management_address.errors.full_messages).to include('Telephone number 電話番号は10桁以上11桁以内のみ使用してください')
   end
   it 'telephone_number:電話番号が12桁以上であると保存できない' do
-    @purchase_management_address.telephone_number = 000000000000
+    @purchase_management_address.telephone_number = '000000000000'
     @purchase_management_address.valid?
     expect(@purchase_management_address.errors.full_messages).to include('Telephone number 電話番号は10桁以上11桁以内のみ使用してください')
   end

@@ -49,17 +49,17 @@ require 'rails_helper'
   it 'telephone_number:電話番号が9桁以下であると保存できない' do
     @purchase_management_address.telephone_number = '000000000'
     @purchase_management_address.valid?
-    expect(@purchase_management_address.errors.full_messages).to include('Telephone number 電話番号は10桁以上11桁以内のみ使用してください')
+    expect(@purchase_management_address.errors.full_messages).to include('Telephone number is too short (minimum is 10 characters)')
   end
   it 'telephone_number:電話番号が12桁以上であると保存できない' do
     @purchase_management_address.telephone_number = '000000000000'
     @purchase_management_address.valid?
-    expect(@purchase_management_address.errors.full_messages).to include('Telephone number 電話番号は10桁以上11桁以内のみ使用してください')
+    expect(@purchase_management_address.errors.full_messages).to include('Telephone number is too long (maximum is 11 characters)')
   end
   it 'telephone_number:半角数字以外では保存できない' do
     @purchase_management_address.telephone_number = '１１１１１１１１１１１'
     @purchase_management_address.valid?
-    expect(@purchase_management_address.errors.full_messages).to include("Telephone number 電話番号は半角数値のみ使用してください")
+    expect(@purchase_management_address.errors.full_messages).to include("Telephone number is not a number")
   end
   it "token:必須" do
     @purchase_management_address.token = nil

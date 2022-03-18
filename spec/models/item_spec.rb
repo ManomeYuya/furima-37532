@@ -42,7 +42,7 @@ RSpec.describe Item, type: :model do
       it 'price:半角数字以外では保存できない' do
         @item.price = '５５５５'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price 価格は半角数値のみ使用してください")
+        expect(@item.errors.full_messages).to include("Price 価格は¥300~9,999,999の間で設定してください")
       end
       it 'price:¥300以下の場合は保存できない' do
         @item.price = 200
